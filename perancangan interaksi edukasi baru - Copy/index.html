@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Edukasi Bencana</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BODY ================= */
+body{
+font-family:Fredoka, sans-serif;
+margin:0;
+background:linear-gradient(#caf0f8,#f1fbff);
+text-align:center;
+}
+
+/* ================= HEADER ================= */
+header{
+background:#0077b6;
+color:white;
+padding:20px;
+font-size:26px;
+font-weight:bold;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ================= HOST BUMI ================= */
+
+.host-wrapper{
+margin-bottom:30px;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.earth-host{
+width:160px;
+height:160px;
+margin:auto;
+border-radius:50%;
+background:radial-gradient(circle at 35% 35%, #4cc9f0, #0077b6);
+position:relative;
+box-shadow:0 12px 25px rgba(0,0,0,.25);
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-14px);}
+}
+
+/* wajah */
+.face{
+position:absolute;
+top:50px;
+left:0;
+right:0;
+}
+
+.eye{
+width:18px;
+height:18px;
+background:white;
+border-radius:50%;
+position:absolute;
+animation:blink 5s infinite;
+}
+
+.eye.left{ left:45px;}
+.eye.right{ right:45px;}
+
+@keyframes blink{
+0%,92%,100%{transform:scaleY(1);}
+95%{transform:scaleY(0.1);}
+}
+
+.mouth{
+width:45px;
+height:22px;
+border-bottom:4px solid white;
+border-radius:0 0 40px 40px;
+margin:25px auto;
+transition:.2s;
+}
+
+.talking{
+height:12px;
+background:white;
+border:none;
+border-radius:10px;
+}
+
+/* tangan */
+.hand{
+width:24px;
+height:60px;
+background:#4cc9f0;
+position:absolute;
+top:60px;
+border-radius:20px;
+}
+
+.left-hand{
+left:-22px;
+animation:wave 2s infinite;
+}
+
+.right-hand{
+right:-22px;
+}
+
+@keyframes wave{
+0%{transform:rotate(0deg);}
+50%{transform:rotate(-30deg);}
+100%{transform:rotate(0deg);}
+}
+
+/* chat bubble */
+.bubble{
+background:white;
+padding:14px 22px;
+border-radius:25px;
+display:inline-block;
+margin-top:15px;
+box-shadow:0 5px 12px rgba(0,0,0,.2);
+min-height:40px;
+font-size:18px;
+}
+
+/* ================= MENU ================= */
+
+.menu{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+.menu-btn{
+width:200px;
+padding:25px;
+border-radius:18px;
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 6px 15px rgba(0,0,0,.2);
+text-decoration:none;
+display:block;
+}
+
+.menu-btn:hover{
+transform:translateY(-8px) scale(1.05);
+}
+
+/* warna tombol */
+.profil{ background:#f77f00; }
+.belajar{ background:#00b4d8; }
+.game{ background:#43aa8b; }
+
+
+</style>
+</head>
+
+<body>
+
+<header>🌎 Media Edukasi Bencana Alam</header>
+
+<div class="container">
+<div class="card">
+
+<!-- ================= HOST ================= -->
+<div class="host-wrapper">
+
+<div class="earth-host">
+
+<div class="face">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth" id="mouth"></div>
+</div>
+
+<div class="hand left-hand"></div>
+<div class="hand right-hand"></div>
+
+</div>
+
+<div class="bubble" id="bubble">
+Selamat datang!
+</div>
+
+</div>
+
+<!-- ================= MENU ================= -->
+<div class="menu">
+
+<a href="menu_profil.html" class="menu-btn profil">
+👤 Profil
+</a>
+
+<a href="belajar.html" class="menu-btn belajar">
+📘 Belajar
+</a>
+
+<a href="menu_quiz.html" class="menu-btn game">
+🎮 Game
+</a>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* ================= HOST BERBICARA ================= */
+function typeText(text){
+
+let bubble=document.getElementById("bubble");
+let mouth=document.getElementById("mouth");
+
+bubble.innerHTML="";
+let i=0;
+
+let typing=setInterval(()=>{
+
+bubble.innerHTML+=text.charAt(i);
+
+mouth.classList.add("talking");
+
+setTimeout(()=>{
+mouth.classList.remove("talking");
+},120);
+
+i++;
+
+if(i>=text.length){
+clearInterval(typing);
+mouth.classList.remove("talking");
+}
+
+},35);
+}
+
+/* SAPAAN OTOMATIS */
+window.onload=function(){
+
+typeText(
+"Halo teman! 🌎 Selamat datang di Media Edukasi Bencana Alam. Pilih menu Profil, Belajar, atau Game untuk mulai petualangan belajar kamu!"
+);
+
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Edukasi Gempa Bumi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BODY ================= */
+body{
+font-family:Fredoka, sans-serif;
+margin:0;
+background:linear-gradient(#f1e3d3,#fff8f0);
+text-align:center;
+overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+header{
+background:#8d6e63;
+color:white;
+padding:20px;
+font-size:24px;
+font-weight:bold;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/* ================= HOST ================= */
+.host-wrapper{
+animation:enter 1s ease;
+}
+
+@keyframes enter{
+from{opacity:0; transform:translateY(60px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.earth-host{
+width:150px;
+height:150px;
+margin:20px auto;
+border-radius:50%;
+background:radial-gradient(circle at 35% 35%, #a1887f, #6d4c41);
+position:relative;
+box-shadow:0 12px 25px rgba(0,0,0,.25);
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+
+/* wajah */
+.face{
+position:absolute;
+top:45px;
+left:0;
+right:0;
+}
+
+.eye{
+width:16px;
+height:16px;
+background:white;
+border-radius:50%;
+position:absolute;
+animation:blink 5s infinite;
+}
+
+.eye.left{ left:42px; }
+.eye.right{ right:42px; }
+
+@keyframes blink{
+0%,92%,100%{transform:scaleY(1);}
+95%{transform:scaleY(0.1);}
+}
+
+.mouth{
+width:40px;
+height:20px;
+border-bottom:4px solid white;
+border-radius:0 0 40px 40px;
+margin:22px auto;
+transition:.2s;
+}
+
+.talking{
+height:10px;
+background:white;
+border:none;
+border-radius:10px;
+}
+
+/* tangan */
+.hand{
+width:22px;
+height:55px;
+background:#a1887f;
+position:absolute;
+top:55px;
+border-radius:20px;
+}
+
+.left-hand{
+left:-20px;
+animation:wave 2s infinite;
+}
+
+.right-hand{
+right:-20px;
+}
+
+@keyframes wave{
+0%{transform:rotate(0deg);}
+50%{transform:rotate(-30deg);}
+100%{transform:rotate(0deg);}
+}
+
+/* ================= CHAT ================= */
+.bubble{
+background:#fff;
+padding:12px 20px;
+border-radius:20px;
+display:inline-block;
+margin:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+min-height:40px;
+}
+
+/* ================= BUTTON ================= */
+button{
+padding:10px 18px;
+margin:6px;
+border:none;
+border-radius:10px;
+background:#8d6e63;
+color:white;
+cursor:pointer;
+font-weight:bold;
+transition:.2s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* ================= SECTION ================= */
+.section{
+margin:30px 0;
+}
+
+/* ================= VIDEO SECTION ================= */
+.video-section{
+margin-top:40px;
+padding:20px;
+background:#f7ebe6;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.video-section h2{
+color:#6d4c41;
+}
+
+.video-container{
+display:flex;
+justify-content:center;
+margin-top:15px;
+}
+
+.video-container video{
+width:80%;
+max-width:600px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+.analisis{
+margin-top:20px;
+text-align:left;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+font-size:14px;
+}
+
+/* ================= BUTTON LINK ================= */
+.btn{
+display:inline-block;
+padding:10px 18px;
+background:#8d6e63;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>🌍 Edukasi Gempa Bumi</header>
+
+<div class="container">
+<div class="card">
+
+<!-- HOST -->
+<div class="host-wrapper">
+<div class="earth-host">
+<div class="face">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth" id="mouth"></div>
+</div>
+<div class="hand left-hand"></div>
+<div class="hand right-hand"></div>
+</div>
+</div>
+
+<div class="bubble" id="bubble">
+Halo! Aku Bumi 🌎 Mari belajar tentang Gempa Bumi!
+</div>
+
+</div>
+
+<!-- MATERI -->
+<div class="section">
+<h2>📘 Materi Pembelajaran</h2>
+
+<button onclick="materi(1)">Apa itu Gempa?</button>
+<button onclick="materi(2)">Proses Terjadi</button>
+<button onclick="materi(3)">Dampak</button>
+
+<p>Klik tombol materi untuk mulai belajar 👆</p>
+</div>
+
+<!-- MITIGASI -->
+<div class="section">
+<h2>🛑 Cara Aman Saat Gempa</h2>
+<p>
+✅ Berlindung di bawah meja<br>
+✅ Lindungi kepala<br>
+✅ Jauhi kaca<br>
+✅ Keluar setelah guncangan berhenti
+</p>
+</div>
+
+<!-- VIDEO STUDI KASUS -->
+<div class="video-section">
+<h2>🎥 Studi Kasus: Gempa Cianjur</h2>
+
+<p>
+Berikut dokumentasi gempa di Indonesia sebagai pembelajaran mitigasi.
+</p>
+
+<div class="video-container">
+<video controls>
+<source src="gempa2025.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="analisis">
+<h3>📌 Pelajaran yang Bisa Diambil:</h3>
+<ul>
+<li>Pentingnya bangunan tahan gempa</li>
+<li>Latihan evakuasi secara rutin</li>
+<li>Kesiapsiagaan keluarga sangat penting</li>
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<a href="belajar.html" class="btn">⬅ Kembali</a>
+
+<script>
+
+function typeText(text){
+let bubble=document.getElementById("bubble");
+let mouth=document.getElementById("mouth");
+bubble.innerHTML="";
+let i=0;
+
+let typing=setInterval(()=>{
+bubble.innerHTML+=text.charAt(i);
+mouth.classList.add("talking");
+
+setTimeout(()=>{
+mouth.classList.remove("talking");
+},120);
+
+i++;
+
+if(i>=text.length){
+clearInterval(typing);
+mouth.classList.remove("talking");
+}
+},35);
+}
+
+function materi(x){
+if(x==1){
+typeText("Gempa bumi adalah getaran yang terjadi akibat pergerakan lempeng tektonik.");
+}
+if(x==2){
+typeText("Gempa terjadi ketika energi dari dalam bumi dilepaskan secara tiba-tiba.");
+}
+if(x==3){
+typeText("Gempa dapat merusak bangunan dan membahayakan manusia jika tidak siap.");
+}
+}
+
+</script>
+
+</body>
+</html>

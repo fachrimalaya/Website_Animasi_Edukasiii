@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Edukasi Banjir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BODY ================= */
+body{
+font-family:Fredoka, sans-serif;
+margin:0;
+background:linear-gradient(#dff6ff,#f5fbff);
+text-align:center;
+overflow-x:hidden;
+}
+
+/* ================= HUJAN ================= */
+.rain{
+position:fixed;
+width:2px;
+height:18px;
+background:#90e0ef;
+animation:fall linear infinite;
+opacity:.6;
+}
+
+@keyframes fall{
+from{transform:translateY(-100px);}
+to{transform:translateY(100vh);}
+}
+
+/* ================= HEADER ================= */
+header{
+background:#0096c7;
+color:white;
+padding:20px;
+font-size:24px;
+font-weight:bold;
+}
+
+/* ================= CONTAINER ================= */
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+/* ================= HOST ================= */
+.host-wrapper{
+animation:enter 1s ease;
+}
+
+@keyframes enter{
+from{opacity:0; transform:translateY(60px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.earth-host{
+width:150px;
+height:150px;
+margin:20px auto;
+border-radius:50%;
+background:radial-gradient(circle at 35% 35%, #48cae4, #0077b6);
+position:relative;
+box-shadow:0 12px 25px rgba(0,0,0,.25);
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+
+/* wajah */
+.face{
+position:absolute;
+top:45px;
+left:0;
+right:0;
+}
+
+.eye{
+width:16px;
+height:16px;
+background:white;
+border-radius:50%;
+position:absolute;
+animation:blink 5s infinite;
+}
+
+.eye.left{ left:42px; }
+.eye.right{ right:42px; }
+
+@keyframes blink{
+0%,92%,100%{transform:scaleY(1);}
+95%{transform:scaleY(0.1);}
+}
+
+.mouth{
+width:40px;
+height:20px;
+border-bottom:4px solid white;
+border-radius:0 0 40px 40px;
+margin:22px auto;
+transition:.2s;
+}
+
+.talking{
+height:10px;
+background:white;
+border:none;
+border-radius:10px;
+}
+
+/* tangan */
+.hand{
+width:22px;
+height:55px;
+background:#48cae4;
+position:absolute;
+top:55px;
+border-radius:20px;
+}
+
+.left-hand{
+left:-20px;
+animation:wave 2s infinite;
+}
+
+.right-hand{
+right:-20px;
+}
+
+@keyframes wave{
+0%{transform:rotate(0deg);}
+50%{transform:rotate(-30deg);}
+100%{transform:rotate(0deg);}
+}
+
+/* ================= CHAT ================= */
+.bubble{
+background:#fff;
+padding:12px 20px;
+border-radius:20px;
+display:inline-block;
+margin:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+min-height:40px;
+}
+
+/* ================= BUTTON ================= */
+button{
+padding:10px 18px;
+margin:6px;
+border:none;
+border-radius:10px;
+background:#0096c7;
+color:white;
+cursor:pointer;
+font-weight:bold;
+transition:.2s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.section{
+margin:30px 0;
+}
+
+/* ================= VIDEO SECTION ================= */
+.video-section{
+margin-top:40px;
+padding:20px;
+background:#e3f7ff;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.video-section h2{
+color:#0077b6;
+}
+
+.video-container{
+display:flex;
+justify-content:center;
+margin-top:15px;
+}
+
+.video-container video{
+width:80%;
+max-width:600px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+.analisis{
+margin-top:20px;
+text-align:left;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+font-size:14px;
+}
+
+/* ================= LINK BUTTON ================= */
+.btn{
+display:inline-block;
+padding:10px 18px;
+background:#0096c7;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>🌧️ Edukasi Banjir</header>
+
+<div id="rain-container"></div>
+
+<div class="container">
+<div class="card">
+
+<!-- HOST -->
+<div class="host-wrapper">
+<div class="earth-host">
+<div class="face">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth" id="mouth"></div>
+</div>
+<div class="hand left-hand"></div>
+<div class="hand right-hand"></div>
+</div>
+</div>
+
+<div class="bubble" id="bubble">
+Halo! Aku Bumi 🌎 Yuk belajar tentang Banjir!
+</div>
+
+</div>
+
+<!-- MATERI -->
+<div class="section">
+<h2>📘 Materi Pembelajaran</h2>
+
+<button onclick="materi(1)">Apa itu Banjir?</button>
+<button onclick="materi(2)">Penyebab</button>
+<button onclick="materi(3)">Dampak</button>
+
+</div>
+
+<!-- MITIGASI -->
+<div class="section">
+<h2>🛑 Cara Aman Saat Banjir</h2>
+<p>
+✅ Matikan listrik<br>
+✅ Pindah ke tempat tinggi<br>
+✅ Hindari arus deras<br>
+✅ Siapkan tas siaga
+</p>
+</div>
+
+<!-- VIDEO STUDI KASUS -->
+<div class="video-section">
+<h2>🎥 Studi Kasus: Banjir di Jakarta</h2>
+
+<p>
+Berikut dokumentasi kejadian banjir besar yang melanda wilayah Jakarta.
+</p>
+
+<div class="video-container">
+<video controls>
+<source src="banjir2025.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="analisis">
+<h3>📌 Pelajaran yang Bisa Diambil:</h3>
+<ul>
+<li>Pentingnya menjaga kebersihan saluran air</li>
+<li>Mengurangi pembangunan di daerah resapan</li>
+<li>Menyiapkan evakuasi dan tas siaga</li>
+<li>Mendengarkan informasi resmi pemerintah</li>
+</ul>
+</div>
+
+</div>
+
+<a href="belajar.html" class="btn">⬅ Kembali</a>
+
+</div>
+
+<script>
+
+/* HUJAN */
+const rainContainer=document.getElementById("rain-container");
+
+for(let i=0;i<80;i++){
+let drop=document.createElement("div");
+drop.className="rain";
+drop.style.left=Math.random()*100+"%";
+drop.style.animationDuration=(0.5+Math.random())+"s";
+drop.style.animationDelay=Math.random()+"s";
+rainContainer.appendChild(drop);
+}
+
+/* HOST BICARA */
+function typeText(text){
+let bubble=document.getElementById("bubble");
+let mouth=document.getElementById("mouth");
+bubble.innerHTML="";
+let i=0;
+
+let typing=setInterval(()=>{
+bubble.innerHTML+=text.charAt(i);
+mouth.classList.add("talking");
+
+setTimeout(()=>{
+mouth.classList.remove("talking");
+},120);
+
+i++;
+
+if(i>=text.length){
+clearInterval(typing);
+mouth.classList.remove("talking");
+}
+},35);
+}
+
+function materi(x){
+if(x==1){
+typeText("Banjir adalah peristiwa meluapnya air hingga menggenangi daratan.");
+}
+if(x==2){
+typeText("Banjir terjadi akibat hujan deras, saluran tersumbat, dan kurangnya daerah resapan.");
+}
+if(x==3){
+typeText("Banjir dapat merusak rumah, fasilitas umum, dan mengganggu aktivitas masyarakat.");
+}
+}
+
+</script>
+
+</body>
+</html>
